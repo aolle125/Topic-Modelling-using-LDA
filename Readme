@@ -1,0 +1,35 @@
+Topic Modelling is an unsupervised classification algorithm for topic modelling to group documents based on a given set of important terms/keywords.
+LDA is one of the popular methods for topic modelling, it treats each document as a mixture of topics and every topic is a mixture of words. 
+We make the use of pyspark.ml.clustering.LDA for performing LDA on our document corpus.
+We make use of the online optimizer rather than ‘em’ for better performance and faster results and set maxIter = 1000.
+
+For finding the value of k, after multiple runs, the number of topics being 25 was the perfect fit and gave the best results.
+The value of logPerplexity for k = 25 is 7.712397571620074, and this was the a good balance between number of topics and the perplexity that we could find for a set of k values between 10 and 250.
+We also visualized the results and found that the groups of terms in every topic were the best for the value of k=25 and made the most possible sense.
+The topic word clouds show a clear representation of the set of terms in every topic and we can clearly see that most of the topics have terms almost similar to each other and are also enough proof that the value of k being 25 is the perfect fit for the model.
+
+"Severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) is a positive-sense single-stranded ribonucleic acid (RNA) virus and has been identified as the causative agent of coronavirus disease 2019 (COVID-19) disease [1]” has been identified with the topic containing terms such asthma, pneumonia i.e. topic 9
+“Considered as the most important asset in the prevention and control of COVID-19, 1 the role that healthcare workers play in this global pandemic gives a renewed meaning of what true human service is all about. Healthcare workers face a wide array of risks and uncertainties in their day-to-day responsibilities as they do battle with COVID-19. Despite these mounting challenges, they remain steadfast and committed to patient-centered care. With the Department of Health's (DOH) interim guidelines for emergency hiring of health personnel, as the country's clear and appropriate response to the COVID-19 health emergency, 2 the many members of the healthcare system are undoubtedly teeming with pride” has been identified with topic 12 with terms like health, public, services, medical, care.
+“More than 60 turtle species from all over the world have been found being sold in the Yuehe Pet Market, the largest pet market in China. Over 60 % of the species are CITES listed species (e.g. Astrochelys radiata, Platysternon megacephalum), over 20 species as critically endangered (e.g. Cuora galbinifrons, Cuora picturata) or endangered (e.g. Cuora mouhotii, Geoemyda spengleri) on the IUCN Red List [S1, S2] . Due to lax law enforcement, wildlife trade in this market has existed for many years” belongs to topic 1 with terms such as market, food, economic, demand, global.
+
+
+
+On Local Machines:
+
+The code can be run in a jupyter notebook using the findspark package in Python
+
+pip install findspark
+import findspark
+findspark.init()
+
+This helps us find the local spark instance in our computer and makes our jupyter notebook compatible
+with Pyspark
+
+
+On Amazon EMR:
+
+We made use of the EMR Notebooks in Amazon AWS EMR to perform our operations.
+Our csv file was saved on a bucket on Amazon S3.
+The same notebook could be run on EMR without the findspark initialization
+
+
